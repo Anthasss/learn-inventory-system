@@ -1,0 +1,5 @@
+{
+  "name": "inventory-system",
+  "private": true,
+  "workspaces": ["shared", "backend", "frontend"]
+}

@@ -5,12 +5,10 @@
     "moduleResolution": "NodeNext",
     "rootDir": "./src",
     "outDir": "./dist",
+    "declaration": true,
+    "declarationMap": true,
     "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "paths": {
-      "@shared": ["../shared/src/index.ts"]
-    }
+    "skipLibCheck": true
   },
   "include": ["src"]
 }
