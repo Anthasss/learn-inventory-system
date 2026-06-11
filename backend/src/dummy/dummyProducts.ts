@@ -1,33 +1,48 @@
-import type { Product } from "@inventory/shared";
+import { Product } from "@inventory/shared";
 export const dummyProducts: Product[] = [
   {
     id: 1,
     name: "Haha",
+    category: "c1",
     quantity: 33,
+    unit: "Kg",
     price: 2000,
+    minimumStock: 10,
   },
   {
     id: 2,
     name: "Hihi",
+    category: "c2",
     quantity: 33,
+    unit: "Kg",
     price: 2000,
+    minimumStock: 10,
   },
   {
     id: 3,
-    name: "Huhu",
+    name: "Hehe",
+    category: "c2",
     quantity: 33,
+    unit: "Kg",
     price: 2000,
+    minimumStock: 10,
   },
   {
     id: 4,
-    name: "Hehe",
+    name: "Huhu",
+    category: "c3",
     quantity: 33,
+    unit: "Kg",
     price: 2000,
+    minimumStock: 10,
   },
   {
     id: 5,
     name: "Hoho",
+    category: "c1",
     quantity: 33,
+    unit: "Kg",
     price: 2000,
+    minimumStock: 10,
   },
 ];
