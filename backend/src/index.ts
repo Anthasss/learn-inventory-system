@@ -1,17 +1,11 @@
 import express from "express";
-import type { Product } from "@inventory/shared";
+
+import { dummyProducts } from "./dummy/dummyProducts";
 
 const app = express();
 const PORT = 3000;
 
 app.use(express.json());
-
-const hehe: Product = {
-  id: 1,
-  name: "Hihi",
-  quantity: 33,
-  price: 2000,
-};
 
 app.get("/", (req, res) => {
   res.json({
@@ -20,8 +14,8 @@ app.get("/", (req, res) => {
   });
 });
 
-app.get("/haha", (req, res) => {
-  res.json(hehe);
+app.get("/products", (req, res) => {
+  res.json(dummyProducts);
 });
 
 app.listen(PORT, () => {
