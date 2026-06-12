@@ -1,5 +1,7 @@
 import type { Product } from "@inventory/shared";
+import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 
 const products: Product[] = [
   {
@@ -41,13 +43,18 @@ const products: Product[] = [
 ];
 
 export function StockPage() {
+  const [searchKeyword, setSearchKeyword] = useState("");
+  const filteredProducts = products.filter((product) => {
+    return product.name.toLowerCase().includes(searchKeyword.toLowerCase());
+  });
+
   const totalProducts = products.length;
 
   const lowStock = products.filter((product) => {
     return product.quantity <= product.minimumStock;
   }).length;
 
-  const searchResult = products.length;
+  const searchResult = filteredProducts.length;
 
   return (
     <main className="min-h-screen bg-background px-6 py-8 text-foreground">
@@ -98,7 +105,13 @@ export function StockPage() {
           <CardHeader>
             <CardTitle>Daftar Stok</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="flex flex-col gap-4">
+            <Input
+              value={searchKeyword}
+              onChange={(event) => setSearchKeyword(event.target.value)}
+              placeholder="Cari berdasarkan nama barang..."
+            />
+
             <p className="text-sm text-muted-foreground">
               Tabel stok barang akan ditampilkan di sini.
             </p>
