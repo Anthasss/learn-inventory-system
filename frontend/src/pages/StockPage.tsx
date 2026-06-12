@@ -131,17 +131,28 @@ export function StockPage() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {filteredProducts.map((product) => (
-                  <TableRow key={product.id}>
-                    <TableCell>{product.id}</TableCell>
-                    <TableCell className="font-medium">
-                      {product.name}
+                {filteredProducts.length === 0 ? (
+                  <TableRow>
+                    <TableCell
+                      colSpan={4}
+                      className="h-24 text-center text-muted-foreground"
+                    >
+                      Barang Tidak Ditemukan.
                     </TableCell>
-                    <TableCell>{product.category}</TableCell>
-                    <TableCell>{product.quantity}</TableCell>
-                    <TableCell>{product.unit}</TableCell>
                   </TableRow>
-                ))}
+                ) : (
+                  filteredProducts.map((product) => (
+                    <TableRow key={product.id}>
+                      <TableCell>{product.id}</TableCell>
+                      <TableCell className="font-medium">
+                        {product.name}
+                      </TableCell>
+                      <TableCell>{product.category}</TableCell>
+                      <TableCell>{product.quantity}</TableCell>
+                      <TableCell>{product.unit}</TableCell>
+                    </TableRow>
+                  ))
+                )}
               </TableBody>
             </Table>
           </CardContent>
