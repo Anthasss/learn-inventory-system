@@ -1,4 +1,4 @@
-import { StockPage } from "./pages/StockPages";
+import { StockPage } from "./pages/StockPage";
 
 function App() {
   return <StockPage />;
