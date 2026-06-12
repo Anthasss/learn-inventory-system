@@ -10,6 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Badge } from "@/components/ui/badge";
 
 const products: Product[] = [
   {
@@ -128,30 +129,42 @@ export function StockPage() {
                   <TableHead>Kategori</TableHead>
                   <TableHead>Stok</TableHead>
                   <TableHead>Satuan</TableHead>
+                  <TableHead>Status</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {filteredProducts.length === 0 ? (
                   <TableRow>
                     <TableCell
-                      colSpan={4}
+                      colSpan={6}
                       className="h-24 text-center text-muted-foreground"
                     >
                       Barang Tidak Ditemukan.
                     </TableCell>
                   </TableRow>
                 ) : (
-                  filteredProducts.map((product) => (
-                    <TableRow key={product.id}>
-                      <TableCell>{product.id}</TableCell>
-                      <TableCell className="font-medium">
-                        {product.name}
-                      </TableCell>
-                      <TableCell>{product.category}</TableCell>
-                      <TableCell>{product.quantity}</TableCell>
-                      <TableCell>{product.unit}</TableCell>
-                    </TableRow>
-                  ))
+                  filteredProducts.map((product) => {
+                    const isLowStock = product.quantity <= product.minimumStock;
+
+                    return (
+                      <TableRow key={product.id}>
+                        <TableCell>{product.id}</TableCell>
+                        <TableCell className="font-medium">
+                          {product.name}
+                        </TableCell>
+                        <TableCell>{product.category}</TableCell>
+                        <TableCell>{product.quantity}</TableCell>
+                        <TableCell>{product.unit}</TableCell>
+                        <TableCell>
+                          {isLowStock ? (
+                            <Badge variant="destructive">Stok Rendah</Badge>
+                          ) : (
+                            <Badge variant="secondary">Aman</Badge>
+                          )}
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })
                 )}
               </TableBody>
             </Table>
