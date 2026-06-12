@@ -2,6 +2,14 @@ import type { Product } from "@inventory/shared";
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 const products: Product[] = [
   {
@@ -112,9 +120,30 @@ export function StockPage() {
               placeholder="Cari berdasarkan nama barang..."
             />
 
-            <p className="text-sm text-muted-foreground">
-              Tabel stok barang akan ditampilkan di sini.
-            </p>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="w-[100px]">ID</TableHead>
+                  <TableHead>Nama Barang</TableHead>
+                  <TableHead>Kategori</TableHead>
+                  <TableHead>Stok</TableHead>
+                  <TableHead>Satuan</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {filteredProducts.map((product) => (
+                  <TableRow key={product.id}>
+                    <TableCell>{product.id}</TableCell>
+                    <TableCell className="font-medium">
+                      {product.name}
+                    </TableCell>
+                    <TableCell>{product.category}</TableCell>
+                    <TableCell>{product.quantity}</TableCell>
+                    <TableCell>{product.unit}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
           </CardContent>
         </Card>
       </div>
